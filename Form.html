@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- صفحة Form.html -->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج الطلب</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="myFunctions.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>طلب شراء كتاب</h1>
+        <nav>
+            <ul>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/home.html">الرئيسية</a></li>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/AboutUs.html">من نحن</a></li>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/Books.html">الكتب</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="orderForm">
+            <label for="fullName">الاسم الكامل:</label>
+            <input type="text" id="fullName" name="fullName" required pattern="^[\u0621-\u064A\s]+$">
+
+            <label for="nationalId">الرقم الوطني:</label>
+            <input type="text" id="nationalId" name="nationalId" required pattern="^[0-9]{11}$">
+
+            <label for="dob">تاريخ الميلاد:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="mobile">رقم الموبايل:</label>
+            <input type="text" id="mobile" name="mobile" required pattern="^(093|094)[0-9]{7}$">
+
+            <label for="email">الإيميل:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">إرسال</button>
+        </form>
+    </main>
+    <footer onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        ↑<p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+    
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع الإرسال الافتراضي
+
+            // التحقق من صحة الإدخالات
+            const fullName = document.getElementById('fullName').value;
+            const nationalId = document.getElementById('nationalId').value;
+            const dob = document.getElementById('dob').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+
+            if (fullName && nationalId && dob && mobile && email) {
+                // عرض رسالة نجاح مع معلومات الكتاب المختار
+                alert(`تم إرسال الطلب بنجاح!\n\nمعلومات الكتاب:\nالعنوان: ألف ليلة وليلة\nالسعر: 
+                25000 ل.س`);
+            } else {
+                alert("يرجى تعبئة جميع الحقول بالشكل الصحيح.");
+            }
+        });
+</script>
+  
+    
+</body>
+</html>

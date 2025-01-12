@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- صفحة Books.html -->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكتب</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="myFunctions.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>الكتب المتوفرة</h1>
+        <nav>
+            <ul>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/home.html">الرئيسية</a></li>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/AboutUs.html">من نحن</a></li>
+                <li><a href="file:///C:/Users/%D8%B1%D8%A7%D8%BA%D8%AF/Desktop/%D9%8A/Books.html">الكتب</a></li>
+             </ul>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>رمز الكتاب</th>
+                    <th>العنوان</th>
+                    <th>السعر</th>
+                    <th>إظهار التفاصيل</th>
+                    <th>اختيار الكتاب</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>978-9770916738</td>
+                    <td>ألف ليلة وليلة</td>
+                    <td>25000 ل.س</td>
+                    <td><button class="details-btn">عرض التفاصيل</button></td>
+                    <td><button class="select-btn" data-title="ألف ليلة وليلة" data-price="25000 ل.س" data-isbn="978-9770916738">اختر</button></td>
+                </tr>
+                <tr class="details" style="display: none;">
+                    <td colspan="5">
+                        <p>الناشر: دار المعارف</p>
+                        <p>تصنيف: قصص شعبية</p>
+                        <p>ملخص: كتاب أسطوري يضم مجموعة من القصص الشعبية...</p>
+                    </td>
+                </tr>
+                <!-- يمكن تكرار الصفوف للكتب الأخرى -->
+            </tbody>
+        </table>
+    </main>
+    <footer onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        ↑ <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+    
+
+    <script>
+        // إظهار/إخفاء التفاصيل
+        document.querySelectorAll('.details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const detailsRow = this.parentElement.parentElement.nextElementSibling;
+                detailsRow.style.display = detailsRow.style.display === 'table-row' ? 'none' : 'table-row';
+            });
+        });
+
+        // اختيار الكتاب
+        document.querySelectorAll('.select-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const bookData = {
+                    title: this.dataset.title,
+                    price: this.dataset.price,
+                    isbn: this.dataset.isbn
+                };
+
+                // تخزين معلومات الكتاب في sessionStorage
+                sessionStorage.setItem('selectedBook', JSON.stringify(bookData));
+                alert(`تم اختيار الكتاب: ${bookData.title}`);
+                // الانتقال إلى صفحة الطلب
+                window.location.href = './Form.html';
+            });
+        });
+    </script>
+</body>
+</html>
